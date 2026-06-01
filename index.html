@@ -66,11 +66,47 @@
             text-align: center;
             border-radius: 10px;
             margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .hero-content {
+            flex: 1;
+            min-width: 250px;
         }
 
         .hero h2 {
             font-size: 2rem;
             margin-bottom: 1rem;
+        }
+
+        .hero-image {
+            flex: 1;
+            min-width: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            max-height: 300px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
         .discount-banner {
@@ -316,8 +352,16 @@
                 margin: 0.5rem 0;
             }
 
+            .hero {
+                flex-direction: column;
+            }
+
             .hero h2 {
                 font-size: 1.5rem;
+            }
+
+            .hero-image img {
+                max-height: 250px;
             }
 
             .container {
@@ -349,8 +393,13 @@
 
     <div class="container">
         <section class="hero" id="inicio">
-            <h2>🎉 Bienvenido a Tienda de JIET</h2>
-            <p>Descubre nuestra amplia variedad de ropa usada de calidad de todas las marcas reconocidas con descuentos especiales para toda la familia.</p>
+            <div class="hero-content">
+                <h2>🎉 Bienvenido a Tienda de JIET</h2>
+                <p>Descubre nuestra amplia variedad de ropa usada de calidad de todas las marcas reconocidas con descuentos especiales para toda la familia.</p>
+            </div>
+            <div class="hero-image">
+                <img src="mascota-jiet.jpg" alt="Mascota de Tienda de JIET" title="¡La mascota de JIET!">
+            </div>
         </section>
 
         <div class="discount-banner">
