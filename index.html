@@ -248,6 +248,39 @@
             font-weight: bold;
         }
 
+        .map-container {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .map-container h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+            border-radius: 8px;
+        }
+
+        .address-info {
+            background: white;
+            padding: 1.5rem;
+            border-left: 4px solid #00a8e8;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+
+        .address-info strong {
+            color: #00a8e8;
+        }
+
         .social-links {
             display: flex;
             justify-content: center;
@@ -368,6 +401,10 @@
                 padding: 1rem;
             }
 
+            .map-container iframe {
+                height: 300px;
+            }
+
             .whatsapp-float {
                 width: 50px;
                 height: 50px;
@@ -381,7 +418,7 @@
 <body>
     <header>
         <h1>👗 Tienda de JIET</h1>
-        <p>Tu tienda de ropa usada con los mejores precios</p>
+        <p>El Clóset de JIET - Tu tienda de ropa usada con los mejores precios</p>
     </header>
 
     <nav>
@@ -479,23 +516,39 @@
         </section>
 
         <section class="contact-section" id="contacto">
-            <h2 style="color: #667eea; margin-bottom: 1rem;">📞 Información de Contacto</h2>
+            <h2 style="color: #667eea; margin-bottom: 1rem;">📍 Ubicación y Contacto</h2>
+            
+            <!-- Mapa de Google -->
+            <div class="map-container">
+                <h3>📍 Encuéntranos en Managua</h3>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3728.9894378472256!2d-86.27091!3d12.1133333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f71594f1b7b7b7b%3A0x1b7b7b7b1b7b7b7b!2sReparto%20Chick%2C%20Managua%2C%20Nicaragua!5e0!3m2!1ses!2s!4v1234567890" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+
+            <!-- Información de dirección -->
+            <div class="address-info">
+                <strong>📌 Dirección Completa:</strong><br>
+                Reparto Chick, Managua, Nicaragua<br>
+                Del Cine Ideal 1 cuadra al norte, 25 varas oeste<br>
+                <strong style="color: #25d366;">📱 WhatsApp:</strong> <a href="https://wa.me/50183702337" style="color: #25d366; text-decoration: none; font-weight: bold;">83702337</a>
+            </div>
+
+            <h2 style="color: #667eea; margin-bottom: 1rem; margin-top: 2rem;">📞 Información de Contacto</h2>
             <div class="contact-info">
                 <div class="contact-item">
                     <strong>📧 Email</strong><br>
                     tiendadejiet@email.com
                 </div>
                 <div class="contact-item">
-                    <strong>📱 Teléfono</strong><br>
-                    +1 (555) 123-4567
-                </div>
-                <div class="contact-item">
                     <strong>📍 Ubicación</strong><br>
-                    [Tu dirección aquí]
+                    Managua, Nicaragua
                 </div>
                 <div class="contact-item">
                     <strong>⏰ Horario</strong><br>
                     Lunes a Sábado 9:00 AM - 6:00 PM
+                </div>
+                <div class="contact-item">
+                    <strong>🚚 Delivery</strong><br>
+                    Disponible en Managua
                 </div>
             </div>
 
@@ -505,6 +558,7 @@
                 <a href="https://wa.me/50183702337" style="color: #25d366; text-decoration: none; font-weight: bold;">
                     83702337 - Click aquí para chatear
                 </a>
+                <div class="delivery-badge">¡Chatea con nosotros ahora!</div>
             </div>
 
             <h3 style="color: #00a8e8; margin-top: 2rem; margin-bottom: 1rem;">🏦 Información Bancaria</h3>
@@ -517,7 +571,7 @@
             <h3 style="color: #ffc107; margin-top: 2rem; margin-bottom: 1rem;">🚚 Servicio de Delivery</h3>
             <div class="payment-info" style="border-left-color: #ffc107;">
                 <strong style="color: #ffc107;">🚚 Envíos a domicilio</strong><br>
-                Realizamos entregas rápidas y seguras en toda la zona. Consulta disponibilidad y costos por WhatsApp.
+                Realizamos entregas rápidas y seguras en toda Managua. Consulta disponibilidad y costos por WhatsApp.
                 <div class="delivery-badge">¡Envío disponible!</div>
             </div>
 
@@ -525,7 +579,7 @@
             <div class="social-links">
                 <a href="https://facebook.com" title="Facebook">f</a>
                 <a href="https://instagram.com" title="Instagram">📷</a>
-                <a href="https://twitter.com" title="Twitter">𝕏</a>
+                <a href="https://tiktok.com/@elclosetdejie" title="TikTok">🎵</a>
             </div>
         </section>
     </div>
@@ -540,9 +594,9 @@
     <div class="whatsapp-label">Chatea con nosotros</div>
 
     <footer>
-        <p><strong>© 2026 Tienda de JIET. Todos los derechos reservados.</strong></p>
+        <p><strong>© 2026 El Clóset de JIET. Todos los derechos reservados.</strong></p>
         <p>Ropa usada de calidad con descuentos especiales</p>
-        <p style="margin-top: 1rem; font-size: 0.9rem;">📱 WhatsApp: 83702337 | 💳 Cuenta: FISE131017025 | 🚚 Delivery disponible</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem;">📍 Managua, Nicaragua | 📱 WhatsApp: 83702337 | 💳 Cuenta: FISE131017025 | 🚚 Delivery disponible</p>
     </footer>
 
     <script>
