@@ -165,6 +165,31 @@
             margin-bottom: 0.5rem;
         }
 
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid #667eea;
+            background-color: white;
+            color: #667eea;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background-color: #667eea;
+            color: white;
+        }
+
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -518,6 +543,14 @@
                 margin: 10% auto;
             }
 
+            .filter-container {
+                flex-direction: column;
+            }
+
+            .filter-btn {
+                width: 100%;
+            }
+
             .whatsapp-float {
                 width: 50px;
                 height: 50px;
@@ -561,6 +594,17 @@
 
         <section class="section" id="productos">
             <h2>👕 Nuestros Productos</h2>
+            
+            <!-- Filtros de Precio -->
+            <div class="filter-container">
+                <button class="filter-btn active" onclick="filterByPrice('all')">Todos los Precios</button>
+                <button class="filter-btn" onclick="filterByPrice(10, 50)">C$ 10 - C$ 50</button>
+                <button class="filter-btn" onclick="filterByPrice(50, 100)">C$ 50 - C$ 100</button>
+                <button class="filter-btn" onclick="filterByPrice(100, 200)">C$ 100 - C$ 200</button>
+                <button class="filter-btn" onclick="filterByPrice(200, 500)">C$ 200 - C$ 500</button>
+                <button class="filter-btn" onclick="filterByPrice(500, 10000)">C$ 500+</button>
+            </div>
+
             <div class="products-grid" id="productsGrid">
                 <!-- Los productos se cargarán aquí con JavaScript -->
             </div>
@@ -646,28 +690,45 @@
     </footer>
 
     <script>
-        // Datos de productos
+        // Datos de productos con precios variados desde 10 hasta más
         const products = [
-            { id: 1, name: 'Blusas y Camisetas', icon: '👕', price: 150 },
-            { id: 2, name: 'Pantalones y Jeans', icon: '👖', price: 250 },
-            { id: 3, name: 'Vestidos y Faldas', icon: '👗', price: 300 },
-            { id: 4, name: 'Abrigos y Chaquetas', icon: '🧥', price: 400 },
-            { id: 5, name: 'Shorts Casual', icon: '🩳', price: 120 },
-            { id: 6, name: 'Suéteres y Hoodies', icon: '🧶', price: 280 },
-            { id: 7, name: 'Accesorios Damas', icon: '👜', price: 80 },
-            { id: 8, name: 'Ropa para Niños', icon: '👶', price: 100 },
+            { id: 1, name: 'Camisetas Básicas', icon: '👕', price: 10 },
+            { id: 2, name: 'Polos Casual', icon: '👕', price: 25 },
+            { id: 3, name: 'Blusas Elegantes', icon: '👚', price: 45 },
+            { id: 4, name: 'Camisas de Algodón', icon: '👔', price: 65 },
+            { id: 5, name: 'Pantalones Básicos', icon: '👖', price: 80 },
+            { id: 6, name: 'Jeans Clásicos', icon: '👖', price: 120 },
+            { id: 7, name: 'Pantalones Casuales', icon: '👖', price: 95 },
+            { id: 8, name: 'Shorts de Algodón', icon: '🩳', price: 35 },
+            { id: 9, name: 'Vestidos Casuales', icon: '👗', price: 100 },
+            { id: 10, name: 'Vestidos Elegantes', icon: '👗', price: 200 },
+            { id: 11, name: 'Faldas Midi', icon: '👗', price: 75 },
+            { id: 12, name: 'Faldas Largas', icon: '👗', price: 110 },
+            { id: 13, name: 'Chaquetas Casual', icon: '🧥', price: 150 },
+            { id: 14, name: 'Abrigos Premium', icon: '🧥', price: 350 },
+            { id: 15, name: 'Suéteres Básicos', icon: '🧶', price: 60 },
+            { id: 16, name: 'Hoodies', icon: '🧶', price: 130 },
+            { id: 17, name: 'Ropa para Niños', icon: '👶', price: 20 },
+            { id: 18, name: 'Conjuntos Infantiles', icon: '👶', price: 55 },
+            { id: 19, name: 'Bolsas y Mochilas', icon: '👜', price: 40 },
+            { id: 20, name: 'Accesorios Variados', icon: '👒', price: 15 },
+            { id: 21, name: 'Cinturones', icon: '⌚', price: 30 },
+            { id: 22, name: 'Ropa Deportiva', icon: '🏃', price: 90 },
+            { id: 23, name: 'Ropa de Playa', icon: '🩱', price: 50 },
+            { id: 24, name: 'Conjuntos Premium', icon: '✨', price: 500 },
         ];
 
         let cart = [];
         let currentCurrency = 'cordobas';
-        const exchangeRate = 36.5; // 1 USD = 36.5 Córdobas (ajusta según necesites)
+        let filteredProducts = [...products];
+        const exchangeRate = 36.5; // 1 USD = 36.5 Córdobas
 
         // Cargar productos
         function loadProducts() {
             const productsGrid = document.getElementById('productsGrid');
             productsGrid.innerHTML = '';
 
-            products.forEach(product => {
+            filteredProducts.forEach(product => {
                 const productCard = document.createElement('div');
                 productCard.className = 'product-card';
                 productCard.innerHTML = `
@@ -681,6 +742,23 @@
                 `;
                 productsGrid.appendChild(productCard);
             });
+        }
+
+        // Filtrar por precio
+        function filterByPrice(minPrice, maxPrice = null) {
+            // Actualizar botones activos
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            if (minPrice === 'all') {
+                filteredProducts = [...products];
+            } else {
+                filteredProducts = products.filter(p => p.price >= minPrice && p.price <= maxPrice);
+            }
+            
+            loadProducts();
         }
 
         // Agregar al carrito
